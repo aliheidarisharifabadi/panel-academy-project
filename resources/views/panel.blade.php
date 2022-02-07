@@ -19,7 +19,7 @@ $categories = \App\Models\Category::all();
 <div class="wrapper">
     <div class="header"></div>
     <div class="right">
-        <h3 style="padding: 5px;">panel</h3>
+        <h3 style="padding: 5px;">داشبورد</h3>
 @foreach($categories as $category)
     <a href="?cat_{{$category->id}}"> {{$category->title}}</a>
 
@@ -29,7 +29,14 @@ $categories = \App\Models\Category::all();
         <h2 style="color:#c33;"><?php echo @$_GET['logged'];?></h2>
         <span style="font-size:18px;">خوش آمدید</span><h2 style="color:#03c;"><?php // echo $_SESSION['user_name'];
             ?></h2>
-
+        @foreach($_GET as $key => $value)
+        @if ($key != "")
+                @if (explode('_', $key)[0] == "cat")
+                    <option>{{$categories[explode('_', $key)[1]-1]->description}}</option>
+                    <button type="submit">ثبت</button>
+                @endif
+        @endif
+        @endforeach
         @if(isset($_GET['cat_1']))
           {{34}}
         @endif
