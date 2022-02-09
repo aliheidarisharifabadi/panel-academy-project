@@ -20,4 +20,7 @@ Route::get('/', function () {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/panel',[App\Http\Controllers\UserController::class,'index'])->name('panel');
+Route::get('/dashboard',[App\Http\Controllers\UserController::class,'dashboard'])->name('dashboard');
+Route::get('/login',[App\Http\Controllers\UserController::class,'index'])->name('login');
+Route::post('/post-login', [App\Http\Controllers\UserController::class, 'postLogin'])->name('login.post');
+Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
