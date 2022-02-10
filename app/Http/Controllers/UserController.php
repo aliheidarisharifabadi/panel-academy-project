@@ -47,7 +47,7 @@ class UserController extends Controller
     public function dashboard()
     {
         if(Auth::check()){
-            return view('panel');
+            return view('panel',['user'=>Auth::user()]);
         }
 
         return redirect("login")->withSuccess('Opps! You do not have access');
@@ -65,6 +65,7 @@ class UserController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
+            'name' =>'required',
             'username' => 'required|unique:users',
             'code' => 'required|unique:users',
             'password' =>  'required|string|min:8|max:255',
@@ -74,7 +75,7 @@ class UserController extends Controller
             return response()->json(['error' => $validator->errors(),'status' => 400], 400);
         }
 
-        $input = $request->only(['username', 'password','code']);
+        $input = $request->only(['username', 'password','code','name']);
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
        return $user;

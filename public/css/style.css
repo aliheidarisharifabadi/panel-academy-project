@@ -32,11 +32,12 @@ footer, header, hgroup, menu, nav, section {
 }
 body{
    background: #eeeeee;
-    direction:rtl;
+   
 }
 .wrapper{
     width: 1300px;
     margin: auto;
+	
 }
 .header{
     font-family: "0 Baran";
@@ -77,7 +78,7 @@ body{
     display: block;
 }
 .right a:hover{color:#02b8fa;}
-.right a:visited{color:#FFF;}
+.right a:active{color:#FFF;}
 .left{
     font-family: "0 Homa";
     font-size: 18px;
