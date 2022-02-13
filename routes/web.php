@@ -19,7 +19,8 @@ Route::get('/', function () {
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/generate-pdf', [App\Http\Controllers\UserController::class, 'htmlPdf'])->name('htmlPdf');
+Route::post('/post-request', [App\Http\Controllers\UserController::class, 'postRequest'])->name('post.request');
 Route::get('/dashboard',[App\Http\Controllers\UserController::class,'dashboard'])->name('dashboard');
 Route::get('/login',[App\Http\Controllers\UserController::class,'index'])->name('login');
 Route::post('/post-login', [App\Http\Controllers\UserController::class, 'postLogin'])->name('login.post');

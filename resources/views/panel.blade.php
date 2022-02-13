@@ -20,35 +20,44 @@ $categories = \App\Models\Category::all();
         </div>
         <div class="left">
 
-<p><span>{{$user->name}}</span><span>{{$user->code}}</span></p>
+            <p><span>{{$user->name}}</span><span>{{$user->code}}</span></p>
 
             @foreach($_GET as $key => $value)
                 @if ($key != "")
                     @if (explode('_', $key)[0] == "cat")
-                        <p>{{$categories[explode('_', $key)[1]-1]->description}}</p>
-                        <button type="submit">ثبت</button>
+                        {{$categories[explode('_', $key)[1]-1]->description}}
+
+                        <form method="POST" action="{{ route('post.request') }}">
+
+                            <input type="hidden" id="cat" name="cat"
+                                   value={{$categories[explode('_', $key)[1]-1]->description}}>
+                            <input type="hidden" id="username" name="username" value={{$user->name}}>
+                            <input type="hidden" id="usercode" name="usercode" value={{$user->code}}>
+                            <p><input type="submit" value="ثبت" name="submit"/></p>
+
+
+                        </form>
 
                     @endif
                 @endif
+
             @endforeach
 
-            <?php
-            if (isset($_GET['view_posts'])) {
-                //  require_once('../includes/view_posts_post.php');
-            }
-            if (isset($_GET['edit_posts'])) {
-                // require_once('../includes/edit_post.php');
-            }
-            if (isset($_GET['insert_cat'])) {
-                //  require_once('../includes/insert_cat.php');
-            }
-            if (isset($_GET['view_cats'])) {
-                //  require_once('../includes/view_cats.php');
-            }
-            if (isset($_GET['edit_cat'])) {
-                //  require_once('../includes/edit_cat.php');
-            }
-            ?>
+
+            @if (isset($_GET['submit'])) {
+
+            <div class="center">
+                <p><span>{{$user->name}}</span><span>{{$user->code}}</span></p>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            @endif
+
         </div>
     </div>
 @endsection
