@@ -65,7 +65,8 @@ class UserController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'name' =>'required',
+            'first_name' =>'required',
+            'last_name' =>'required',
             'username' => 'required|unique:users',
             'code' => 'required|unique:users',
             'password' =>  'required|string|min:8|max:255',
@@ -75,16 +76,28 @@ class UserController extends Controller
             return response()->json(['error' => $validator->errors(),'status' => 400], 400);
         }
 
-        $input = $request->only(['username', 'password','code','name']);
+        $input = $request->only(['username', 'password','code','first_name','last_name']);
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
        return $user;
 
     }
 
-    public function postRequest()
+    public function postRequest(Request $request)
     {
-        return redirect("login");
+
+        \App\Models\Request::create([
+            'user-id' => (int) $request->user,
+            'category-id' => (int) $request->cat
+        ]);
+
+        return Redirect('htmlPdf');
+    }
+
+    public function htmlPdf()
+    {
+        $pdf = PDF::loadView('itemPdfView');
+        return $pdf->download('itemPdfView.pdf');
     }
 
 }
