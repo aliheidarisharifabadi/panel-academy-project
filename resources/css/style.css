@@ -59,7 +59,7 @@ body{
     background-image: linear-gradient(to top left, #77d9e2, #cf97ee,#b7abeb);
     display: block;
     float: right;
-    height: 900px;
+    height:  fit-content;
     width: 300px;
     border-left-width: 5px;
     border-left-style: groove;

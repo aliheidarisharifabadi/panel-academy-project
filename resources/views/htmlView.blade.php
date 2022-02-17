@@ -1,16 +1,17 @@
-@extends('layout')
-@section('content')
-
-    <div class="center">
-        <h1>This is heading</h1>
-    </div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-@endsection
-
-
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8 with BOM"/>
+    <style>
+        body {
+        font-family: "dejavu sans", serif;font-size: 12px;color: #000;direction: rtl;
+        }
+         </style>
+    <title>panel</title>
+</head>
+<body>
+<h1>{{$first_name." ".$last_name}}</h1>
+<p>{{ $usercode }}</p>
+<p>{{$des}}</p>
+</body>
+</html>

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use PDF;
+use App\Models\Category;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,8 +27,7 @@ class UserController extends Controller
         ]);
 
 
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
 
             return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
         }
@@ -46,15 +46,16 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        if(Auth::check()){
-            return view('panel',['user'=>Auth::user()]);
+        if (Auth::check()) {
+            return view('panel', ['user' => Auth::user()]);
         }
 
         return redirect("login")->withSuccess('Opps! You do not have access');
 
     }
 
-    public function logout() {
+    public function logout()
+    {
         Session::flush();
         Auth::logout();
 
@@ -65,21 +66,21 @@ class UserController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'first_name' =>'required',
-            'last_name' =>'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'username' => 'required|unique:users',
             'code' => 'required|unique:users',
-            'password' =>  'required|string|min:8|max:255',
+            'password' => 'required|string|min:8|max:255',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(),'status' => 400], 400);
+            return response()->json(['error' => $validator->errors(), 'status' => 400], 400);
         }
 
-        $input = $request->only(['username', 'password','code','first_name','last_name']);
+        $input = $request->only(['username', 'password', 'code', 'first_name', 'last_name']);
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
-       return $user;
+        return $user;
 
     }
 
@@ -87,17 +88,23 @@ class UserController extends Controller
     {
 
         \App\Models\Request::create([
-            'user-id' => (int) $request->user,
-            'category-id' => (int) $request->cat
+            'user-id' => (int)$request->user,
+            'category-id' => (int)$request->cat
         ]);
 
-        return Redirect('htmlPdf');
-    }
+        $des = Category::where('id', $request->cat)->first();
 
-    public function htmlPdf()
-    {
-        $pdf = PDF::loadView('itemPdfView');
-        return $pdf->download('itemPdfView.pdf');
+
+        $data = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'usercode' => $request->usercode,
+            'des' => $des->description,
+        ];
+
+        $pdf = Pdf::loadView('htmlView', $data);
+       return  $pdf->download('panel.pdf');
+
     }
 
 }

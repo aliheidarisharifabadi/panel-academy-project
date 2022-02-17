@@ -60,7 +60,7 @@ body{
     background-image: linear-gradient(to top left, #77d9e2, #cf97ee,#b7abeb);
     display: block;
     float: right;
-    height: 900px;
+    height:  fit-content;
     width: 300px;
     border-left-width: 5px;
     border-left-style: groove;
@@ -68,6 +68,8 @@ body{
     margin-top: 2px;
     border-radius: 10px;
     margin-left: 2px;
+    position: sticky;
+    top: 0;
 }
 .right a{
     text-decoration: none;

@@ -12,20 +12,25 @@ $categories = \App\Models\Category::all();
 
     <div class="wrapper">
         <div class="right">
-            <h3 style="padding: 5px;">داشبورد</h3>
+{{--            <h3 class="cat_req" style="padding: 5px;">داشبورد</h3>--}}
             @foreach($categories as $category)
-                <a href="?cat_{{$category->id}}"> {{$category->title}}</a>
+                <a class="cat_req" href="?cat_{{$category->id}}"> {{$category->title}}</a>
 
             @endforeach
+            @if($user->role === 'admin')
+                <a class="cat_req" href="?allrequest"> تمام درخواست ها</a>
+            @endif
         </div>
         <div class="left">
 
-            <p><span>{{$user->first_name." ".$user->last_name}}</span><span>{{$user->code}}</span></p>
+            <p class="moshakhasat"><span>{{$user->first_name." ".$user->last_name}}</span><span>{{$user->code}}</span></p>
 
             @foreach($_GET as $key => $value)
                 @if ($key != "")
                     @if (explode('_', $key)[0] == "cat")
-                        {{$categories[explode('_', $key)[1]-1]->description}}
+                       <div class="m-des">
+                           {{$categories[explode('_', $key)[1]-1]->description}}
+                       </div>
 
                         <form method="POST" action="{{ route('post.request') }}">
                             @csrf
@@ -35,14 +40,49 @@ $categories = \App\Models\Category::all();
                             <input type="hidden" id="username" name="first_name" value={{$user->first_name}}>
                             <input type="hidden" id="username" name="last_name" value={{$user->last_name}}>
                             <input type="hidden" id="usercode" name="usercode" value={{$user->code}}>
-                            <p><input type="submit" value="ثبت" name="submit"/></p>
+                            <p class="bt-req"><input type="submit" value="ثبت" name="submit"/></p>
 
 
                         </form>
 
                     @endif
                 @endif
+                @if($key === 'allrequest')
+                    <table align="center" bgcolor="#FF9933">
+                        <tr>
+                            <td colspan="7" align="center" bgcolor="#0099CC"><h2>همه درخواست ها</h2></td>
+                        </tr>
+                        <tr>
+                            <th>نام</th>
+                            <th>نام خانوادگی</th>
+                            <th>کد ملی</th>
+                            <th>کد پرسنلی</th>
+                            <th>نوع درخواست</th>
+                            <th>وضعیت</th>
+                        </tr>
+                        <?php $req = \App\Models\Request::paginate(10);
+                        foreach($req as $row){
+                            $user_id_req =  $row['user-id'];
+                         $cat_id_req = $row['category-id'];
+                        $user_data = \App\Models\User::find($user_id_req);
+                         $cat_data = \App\Models\Category::find($cat_id_req);
+                         $req_apro = $row['approve'];
+                         $req_id = $row['id'];
+                        ?>
 
+                        <tr align="center">
+                            <td>{{$user_data->first_name}}</td>
+                            <td>{{$user_data->last_name}}</td>
+                            <td>{{$user_data->username}}</td>
+                            <td>{{$user_data->code}}</td>
+                            <td>{{$cat_data->title}}</td>
+                            <td>{{$req_apro}}</td>
+                        </tr>
+
+<?php }?>
+
+                    </table>
+                @endif
             @endforeach
 
 
