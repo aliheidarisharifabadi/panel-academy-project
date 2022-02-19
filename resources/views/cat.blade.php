@@ -25,6 +25,26 @@ $categories = \App\Models\Category::all();
 
             <p class="moshakhasat"><span>{{$user->first_name." ".$user->last_name}}</span><span>{{$user->code}}</span></p>
 
+                       <div class="m-des">
+                           {{$categories[$cat-1]->description}}
+                       </div>
+
+                        <form method="POST" action="{{ route('post.request') }}">
+                            @csrf
+                            <input type="hidden" id="cat" name="cat"
+                                   value={{$categories[$cat-1]->id}}>
+                            <input type="hidden" id="username" name="user" value={{$user->id}}>
+                            <input type="hidden" id="username" name="first_name" value={{$user->first_name}}>
+                            <input type="hidden" id="username" name="last_name" value={{$user->last_name}}>
+                            <input type="hidden" id="usercode" name="usercode" value={{$user->code}}>
+                            <p class="bt-req"><input type="submit" value="ثبت" name="submit"/></p>
+
+
+                        </form>
+
+
+
+
 {{--            @if (isset($_GET['submit'])) {--}}
 
 {{--            <div class="center">--}}

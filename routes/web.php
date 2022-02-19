@@ -25,3 +25,5 @@ Route::get('/dashboard',[App\Http\Controllers\UserController::class,'dashboard']
 Route::get('/login',[App\Http\Controllers\UserController::class,'index'])->name('login');
 Route::post('/post-login', [App\Http\Controllers\UserController::class, 'postLogin'])->name('login.post');
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+Route::get('/dashboard/allrequest',[App\Http\Controllers\UserController::class,'allrequest'])->name('allrequest');
+Route::get('/dashboard/req/{cat}',[App\Http\Controllers\UserController::class,'req'])->name('req');

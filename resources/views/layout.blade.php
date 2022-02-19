@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>panel</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }} " />
     <style type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
@@ -90,6 +90,12 @@
             background: #c3a0ec;
             margin-top: 10px;
             margin-left: 10px;
+        }
+        .flex.justify-between.flex-1.sm\:hidden,p.text-sm.text-gray-700.leading-5,svg.w-5.h-5,
+        span.relative.inline-flex.items-center.px-2.py-2.text-sm.font-medium.text-gray-500.bg-white.border.border-gray-300.cursor-default.rounded-l-md.leading-5,
+        a.relative.inline-flex.items-center.px-2.py-2.-ml-px.text-sm.font-medium.text-gray-500.bg-white.border.border-gray-300.rounded-r-md.leading-5.hover\:text-gray-400.focus\:z-10.focus\:outline-none.focus\:ring.ring-gray-300.focus\:border-blue-300.active\:bg-gray-100.active\:text-gray-500.transition.ease-in-out.duration-150
+        {
+            display: none;
         }
     </style>
 </head>

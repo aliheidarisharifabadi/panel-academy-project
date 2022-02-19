@@ -102,9 +102,27 @@ class UserController extends Controller
             'des' => $des->description,
         ];
 
-        $pdf = Pdf::loadView('htmlView', $data);
+        $pdf = pdf::loadView('htmlView', $data);
        return  $pdf->download('panel.pdf');
 
     }
 
+    public function allrequest()
+    {
+        if (Auth::check()) {
+            return view('allrequest', ['user' => Auth::user()]);
+        }
+
+        return redirect("login")->withSuccess('Opps! You do not have access');
+    }
+
+    public function req(Request $request,$cat)
+    {
+
+        if (Auth::check()) {
+            return view('cat', ['user' => Auth::user(),'cat'=>explode('_', $cat)[1]]);
+        }
+
+        return redirect("login")->withSuccess('Opps! You do not have access');
+    }
 }
