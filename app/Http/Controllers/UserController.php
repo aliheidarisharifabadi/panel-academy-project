@@ -92,18 +92,17 @@ class UserController extends Controller
             'category-id' => (int)$request->cat
         ]);
 
-        $des = Category::where('id', $request->cat)->first();
+//        $des = Category::where('id', $request->cat)->first();
+//
+//
+//        $data = [
+//            'first_name' => $request->first_name,
+//            'last_name' => $request->last_name,
+//            'usercode' => $request->usercode,
+//            'des' => $des->description,
+//        ];
 
-
-        $data = [
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'usercode' => $request->usercode,
-            'des' => $des->description,
-        ];
-
-        $pdf = pdf::loadView('htmlView', $data);
-       return  $pdf->download('panel.pdf');
+        return Redirect('dashboard');
 
     }
 

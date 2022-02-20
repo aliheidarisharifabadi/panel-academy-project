@@ -36,16 +36,18 @@ $categories = \App\Models\Category::all();
                     <th>کد ملی</th>
                     <th>کد پرسنلی</th>
                     <th>نوع درخواست</th>
+                    <th>تاریخ ثبت</th>
                     <th>وضعیت</th>
                 </tr>
                 </thead>
-                <?php $req = \App\Models\Request::orderBy('id', 'desc')->paginate(10);
+                <?php $req = \App\Models\Request::orderBy('id', 'desc')->paginate(5);
                 foreach($req as $row){
                 $user_id_req =  $row['user-id'];
                 $cat_id_req = $row['category-id'];
                 $user_data = \App\Models\User::find($user_id_req);
                 $cat_data = \App\Models\Category::find($cat_id_req);
                 $req_apro = $row['approve'];
+                $req_tr = $row['created_at'];
                 $req_id = $row['id'];
                 ?>
                 <tbody>
@@ -55,6 +57,7 @@ $categories = \App\Models\Category::all();
                     <td>{{$user_data->username}}</td>
                     <td>{{$user_data->code}}</td>
                     <td>{{$cat_data->title}}</td>
+                    <td>{{$req_tr}}</td>
                     <td>{{$req_apro}}</td>
                 </tr>
                 </tbody>

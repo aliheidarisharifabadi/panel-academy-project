@@ -21,7 +21,7 @@ $categories = \App\Models\Category::all();
                 <a class="cat_req" href="/dashboard/allrequest"> تمام درخواست ها</a>
             @endif
         </div>
-        <div class="left">
+        <div class="left" id="target">
 
             <p class="moshakhasat"><span>{{$user->first_name." ".$user->last_name}}</span><span>{{$user->code}}</span></p>
 
@@ -37,7 +37,7 @@ $categories = \App\Models\Category::all();
                             <input type="hidden" id="username" name="first_name" value={{$user->first_name}}>
                             <input type="hidden" id="username" name="last_name" value={{$user->last_name}}>
                             <input type="hidden" id="usercode" name="usercode" value={{$user->code}}>
-                            <p class="bt-req"><input type="submit" value="ثبت" name="submit"/></p>
+                            <p class="bt-req"><input type="submit" id="cmd" value="ثبت" name="submit"/></p>
 
 
                         </form>
@@ -61,5 +61,38 @@ $categories = \App\Models\Category::all();
 
         </div>
     </div>
+
+    <script>
+        function demoPDF() {
+            var doc = new jsPDF();
+            doc.text(10, 10, 'Hello everybody');
+            doc.text(10, 20, 'My name is');
+
+            doc.text(10, 60, 'Contact me at');
+
+            doc.text(10, 50, 'I have just created a simple pdf using jspdf');
+
+
+            doc.setFont("times");
+
+            doc.setFontType("italic");
+
+            doc.text(50, 60, document.getElementById("email").value);	//append email id in pdf
+
+            doc.setFontType("bold");
+            doc.setTextColor(255,0,0);  //set font color to red
+            doc.text(10, 30, document.getElementById("fname").value); 	//append first name in pdf
+            doc.text(10, 40, document.getElementById("lname").value);	//append last name in pdf
+
+
+
+
+            doc.addPage(); // add new page in pdf
+
+            doc.setTextColor(165,0,0);
+            doc.text(10, 20, 'extra page to write');
+
+            doc.save(document.getElementById("email").value);
+    </script>
 @endsection
 <?php //} ?>
