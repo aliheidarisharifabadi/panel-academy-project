@@ -19,9 +19,10 @@ $categories = \App\Models\Category::all();
             @endforeach
             @if($user->role === 'admin')
                 <a class="cat_req" href="/dashboard/allrequest"> تمام درخواست ها</a>
+                <a class="cat_req" href="/dashboard/insert_user"> افزودن کاربر</a>
             @endif
         </div>
-        <div class="left" id="target">
+        <div class="left" id="test">
 
             <p class="moshakhasat"><span>{{$user->first_name." ".$user->last_name}}</span><span>{{$user->code}}</span></p>
 
@@ -37,62 +38,18 @@ $categories = \App\Models\Category::all();
                             <input type="hidden" id="username" name="first_name" value={{$user->first_name}}>
                             <input type="hidden" id="username" name="last_name" value={{$user->last_name}}>
                             <input type="hidden" id="usercode" name="usercode" value={{$user->code}}>
-                            <p class="bt-req"><input type="submit" id="cmd" value="ثبت" name="submit"/></p>
-
+                            <p class="bt-req"><input type="submit" id="cmd" onclick="javascript:window.print()" value="ثبت" name="submit"/></p>
+                            @if(session()->has('message'))
+                                <div class="message" style="color:green;font-size:14px;margin-top:10px;font-width:bold;">
+                                    {{ session()->get('message') }}
+                                </div>
+                            @endif
 
                         </form>
-
-
-
-
-{{--            @if (isset($_GET['submit'])) {--}}
-
-{{--            <div class="center">--}}
-{{--                <p><span>{{$user->name}}</span><span>{{$user->code}}</span></p>--}}
-{{--            </div>--}}
-{{--            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod--}}
-{{--                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,--}}
-{{--                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo--}}
-{{--                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse--}}
-{{--                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non--}}
-{{--                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>--}}
-
-{{--            @endif--}}
 
         </div>
     </div>
 
-    <script>
-        function demoPDF() {
-            var doc = new jsPDF();
-            doc.text(10, 10, 'Hello everybody');
-            doc.text(10, 20, 'My name is');
 
-            doc.text(10, 60, 'Contact me at');
-
-            doc.text(10, 50, 'I have just created a simple pdf using jspdf');
-
-
-            doc.setFont("times");
-
-            doc.setFontType("italic");
-
-            doc.text(50, 60, document.getElementById("email").value);	//append email id in pdf
-
-            doc.setFontType("bold");
-            doc.setTextColor(255,0,0);  //set font color to red
-            doc.text(10, 30, document.getElementById("fname").value); 	//append first name in pdf
-            doc.text(10, 40, document.getElementById("lname").value);	//append last name in pdf
-
-
-
-
-            doc.addPage(); // add new page in pdf
-
-            doc.setTextColor(165,0,0);
-            doc.text(10, 20, 'extra page to write');
-
-            doc.save(document.getElementById("email").value);
-    </script>
 @endsection
 <?php //} ?>

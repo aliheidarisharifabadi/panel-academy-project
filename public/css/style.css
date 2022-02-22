@@ -30,6 +30,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
+
 body{
    background: #eeeeee;
    
@@ -40,7 +41,7 @@ body{
 	
 }
 .header{
-    font-family: "0 Baran";
+   
     font-size: 24px;
     color:#02b8fa;
     background-image: url("adminpanel.jpg");
@@ -53,8 +54,8 @@ body{
     border-bottom-color: #FF6600;
 }
 .right{
-    font-family: "0 Homa";
-    font-size: 20px;
+    
+    font-size: 16px;
     font-weight: bold;
     text-align: right;
     background-image: linear-gradient(to top left, #77d9e2, #cf97ee,#b7abeb);
@@ -72,6 +73,7 @@ body{
     top: 0;
 }
 .right a{
+	font-family: 'iransans' !important;
     text-decoration: none;
     color:#000000e0;
     text-align: right;
@@ -82,7 +84,7 @@ body{
 .right a:hover{color:#02b8fa;}
 .right a:active{color:#FFF;}
 .left{
-    font-family: "0 Homa";
+   
     font-size: 18px;
     color: #000000;
     background-image: url("backimage.jpg");

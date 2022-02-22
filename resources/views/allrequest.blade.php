@@ -19,6 +19,7 @@ $categories = \App\Models\Category::all();
             @endforeach
             @if($user->role === 'admin')
                 <a class="cat_req" href="/dashboard/allrequest"> تمام درخواست ها</a>
+                <a class="cat_req" href="/dashboard/insert_user"> افزودن کاربر</a>
             @endif
         </div>
         <div class="left">

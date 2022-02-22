@@ -6,13 +6,11 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }} " />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="jquery-ui-1.8.17.custom.min.js"></script>
-    <script type="text/javascript" src="jspdf.debug.js"></script>
-    <script type="text/javascript" src="basic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
 
 
     <style type="text/css">
-        @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
 
         body{
             margin: 0;
@@ -43,10 +41,6 @@
         .navbar-laravel
         {
             box-shadow: 0 2px 4px rgba(0,0,0,.04);
-        }
-        .navbar-brand , .nav-link, .my-form, .login-form
-        {
-            font-family: Raleway, sans-serif;
         }
         .my-form
         {
@@ -98,7 +92,57 @@
             margin-top: 10px;
             margin-left: 10px;
         }
-
+        .sabt-user input[type="text"],.sabt-user input[type="password"] {
+            border-radius: 10px;
+            margin-top: 10px;
+            height: 40px;
+            padding-right: 10px;
+            border: 1px solid #ffffff;
+            box-shadow: 0px 1px 4px 0px #000000;
+        }
+        .sabt-user input[type="password"]{
+            margin-bottom: 10px;
+        }
+        label.col-md-4.col-form-label.text-md-right {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        input#National_Code {
+            margin-bottom: 10px;
+        }
+        input#password {
+            margin-bottom: 10px;
+        }
+        .card-header {
+            font-weight: bold;
+            text-align: right;
+        }
+        a.nav-link {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        @font-face {
+            /* نام فونت  */
+            font-family:'iransans';
+            /*نمایش فونت در مرورگر*/
+            src:url('../../public/fonts/eot/IRANSansWeb.eot');
+            src:local('iransans'), /* لود درصورت وجود فونت در سیستم کاربر */
+            local('iransans'),
+                /* فونت ها برای پشتبانی در مرورگرهای مختلف و دستگاه ها*/
+            url('../../public/fonts/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),
+            url('../../public/fonts/woff/IRANSansWeb.woff') format('woff'),
+            url('../../public/fonts/ttf/IRANSansWeb.ttf') format('truetype'),
+            url('../../public/fonts/woff2/IRANSansWeb.woff2') format('woff2');
+            /* استایل فونت ها  */
+            font-style:normal;
+            font-weight:normal;
+        }
+        *{
+            font-family: 'iransans' !important;
+        }
+        a.nav-link {
+            font-family: 'iransans';
+        }
     </style>
 </head>
 <body>
@@ -114,14 +158,14 @@
             <ul class="navbar-nav ml-auto">
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link" href="{{ route('login') }}">ورود</a>
                     </li>
                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Register</a>
                     </li> --}}
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                        <a class="nav-link" href="{{ route('logout') }}">خروج</a>
                     </li>
                 @endguest
             </ul>
