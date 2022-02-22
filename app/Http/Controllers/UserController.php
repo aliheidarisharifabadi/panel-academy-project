@@ -19,6 +19,13 @@ class UserController extends Controller
         return view('login');
     }
 
+    public function mainpage()
+    {
+        return redirect("login");
+
+    }
+
+
     public function insert()
     {
         if (Auth::check()) {

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,10 @@ Route::get('/dashboard/allrequest',[App\Http\Controllers\UserController::class,'
 Route::get('/dashboard/req/{cat}',[App\Http\Controllers\UserController::class,'req'])->name('req');
 Route::get('/dashboard/insert_user',[App\Http\Controllers\UserController::class,'insert'])->name('insert');
 Route::post('/post-register', [App\Http\Controllers\UserController::class, 'postRegister'])->name('post.register');
+Route::get('/', function () {
+    if(Auth::check()) {
+        return redirect('dashboard');
+    } else {
+        return view('login');
+    }
+});
