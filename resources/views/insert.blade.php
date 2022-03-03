@@ -24,14 +24,17 @@ $categories = \App\Models\Category::all();
         </div>
         <div class="left">
 
-            <p class="moshakhasat"><span>{{$user->first_name." ".$user->last_name}}</span><span>{{$user->code}}</span></p>
+            <p class="moshakhasat"><span>{{$user->name}}</span><span>{{$user->code}}</span></p>
 <div style="text-align:center;margin-top: 10px;">
             <form method="POST" action="{{ route('post.register') }}">
                 @csrf
-               <p class="sabt-user"> <input type="text" name="first_name" placeholder="نام" required></p>
-                <p class="sabt-user"> <input type="text" name="last_name" placeholder="نام خانوادگی" required></p>
+               <p class="sabt-user"> <input type="text" name="name" placeholder="نام و نام خانوادگی" required></p>
+                <p class="sabt-user"> <input type="text" name="father" placeholder="نام پدر" required></p>
                 <p class="sabt-user"> <input type="text" name="username" placeholder="کد ملی" required></p>
                 <p class="sabt-user"> <input type="text" name="code" placeholder="کد پرسنلی" required></p>
+                <p class="sabt-user"> <input type="text" name="shenasname" placeholder="شماره شناسنامه" required></p>
+                <p class="sabt-user"> <input type="text" name="birth_day" placeholder="تاریخ تولد" required></p>
+                <p class="sabt-user"> <input type="text" name="mobile" placeholder="موبایل" required></p>
                 <p class="sabt-user"> <input type="password" name="password" placeholder="رمز عبور" required></p>
                 <p class="bt-req"><input type="submit" id="cmd"  value="ثبت" name="submit"/></p>
                 @if(session()->has('message'))

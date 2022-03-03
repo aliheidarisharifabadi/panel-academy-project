@@ -24,7 +24,7 @@ $categories = \App\Models\Category::all();
         </div>
         <div class="left">
 
-            <p class="moshakhasat"><span>{{$user->first_name." ".$user->last_name}}</span><span>{{$user->code}}</span></p>
+            <p class="moshakhasat"><span>{{$user->name}}</span><span>{{$user->code}}</span></p>
             <div class="container mt-5">
             <table align="center" bgcolor="#FF9933" class="table table-bordered mb-5">
                 <thead>
@@ -33,7 +33,7 @@ $categories = \App\Models\Category::all();
                 </tr>
                 <tr>
                     <th>نام</th>
-                    <th>نام خانوادگی</th>
+{{--                    <th>نام خانوادگی</th>--}}
                     <th>کد ملی</th>
                     <th>کد پرسنلی</th>
                     <th>نوع درخواست</th>
@@ -53,8 +53,8 @@ $categories = \App\Models\Category::all();
                 ?>
                 <tbody>
                 <tr align="center">
-                    <td>{{$user_data->first_name}}</td>
-                    <td>{{$user_data->last_name}}</td>
+                    <td>{{$user_data->name}}</td>
+{{--                    <td>{{$user_data->last_name}}</td>--}}
                     <td>{{$user_data->username}}</td>
                     <td>{{$user_data->code}}</td>
                     <td>{{$cat_data->title}}</td>

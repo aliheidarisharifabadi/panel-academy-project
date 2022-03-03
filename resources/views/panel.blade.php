@@ -24,7 +24,7 @@ $categories = \App\Models\Category::all();
         </div>
         <div class="left">
 
-            <p class="moshakhasat"><span>{{$user->first_name." ".$user->last_name}}</span><span>{{$user->code}}</span></p>
+            <p class="moshakhasat"><span>{{$user->name}}</span><span>{{$user->code}}</span></p>
 
         </div>
     </div>

@@ -33,15 +33,15 @@ footer, header, hgroup, menu, nav, section {
 
 body{
    background: #eeeeee;
-   
+
 }
 .wrapper{
     width: 1300px;
     margin: auto;
-	
+
 }
 .header{
-   
+
     font-size: 24px;
     color:#02b8fa;
     background-image: url("adminpanel.jpg");
@@ -54,7 +54,7 @@ body{
     border-bottom-color: #FF6600;
 }
 .right{
-    
+
     font-size: 16px;
     font-weight: bold;
     text-align: right;
@@ -84,7 +84,7 @@ body{
 .right a:hover{color:#02b8fa;}
 .right a:active{color:#FFF;}
 .left{
-   
+
     font-size: 18px;
     color: #000000;
     background-image: url("backimage.jpg");
